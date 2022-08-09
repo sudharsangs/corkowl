@@ -8,7 +8,8 @@ const config = {
   blackColor: "#000000",
   successColor: "#2FCA72",
   whiteColor: "#FFFFFF",
-  lightStateColor: "#FAFCFE"
+  lightStateColor: "#FAFCFE",
+  peachLightColor: "#FFF2EE",
 };
 
 export const tokens = {
@@ -16,6 +17,7 @@ export const tokens = {
     primary: config.primaryColor,
     secondary: config.secondaryColor,
     sidebarSelected: config.sidebarSelectedColor,
+    peach: config.peachLightColor,
   },
   color: {
     primary: config.primaryColor,
@@ -26,6 +28,6 @@ export const tokens = {
     blackText: config.blackColor,
     successText: config.successColor,
     whiteText: config.whiteColor,
-    lightState: config.lightStateColor
+    lightState: config.lightStateColor,
   },
 };

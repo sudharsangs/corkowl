@@ -4,7 +4,7 @@ import { tokens } from "../../styleConfig";
 export const StyledAside = styled.aside`
   display: flex;
   flex-direction: column;
-  width: 12%;
+  width: 17%;
   height: 100vh;
   margin-top: 3.5rem;
   border-right: 1px solid #ECF1F4;
