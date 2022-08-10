@@ -10,6 +10,7 @@ const config = {
   whiteColor: "#FFFFFF",
   lightStateColor: "#FAFCFE",
   peachLightColor: "#FFF2EE",
+  frozenColor: "#F4F7FF",
 };
 
 export const tokens = {
@@ -18,6 +19,7 @@ export const tokens = {
     secondary: config.secondaryColor,
     sidebarSelected: config.sidebarSelectedColor,
     peach: config.peachLightColor,
+    frozen: config.frozenColor,
   },
   color: {
     primary: config.primaryColor,
@@ -31,3 +33,4 @@ export const tokens = {
     lightState: config.lightStateColor,
   },
 };
+
