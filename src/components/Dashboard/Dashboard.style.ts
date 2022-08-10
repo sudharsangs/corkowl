@@ -4,6 +4,7 @@ import { tokens } from "../../styleConfig";
 export const DashboardWrapper = styled.main`
   display: flex;
   width: 100vw;
+  overflow: hidden;
 `;
 
 export const DashboardContentWrapper = styled.section`
@@ -13,6 +14,7 @@ export const DashboardContentWrapper = styled.section`
   height: 100%;
   padding: 12px 45px;
   margin-top: 3.5rem;
+  overflow-y: scroll;
 `;
 
 export const OverviewHeader = styled.div`
@@ -58,7 +60,8 @@ export const SalesSubHeading = styled.h3`
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 4px;
+  margin-top: 2rem;
 `;
 
 export const SalesOverViewWrapper = styled.div`
@@ -66,7 +69,6 @@ export const SalesOverViewWrapper = styled.div`
   padding: 12px;
   border: ${`1px solid ${tokens.backgroundColor.peach}`};
   border-radius: 4px;
-  margin-top: 2rem;
 `;
 
 export const SalesOverViewText = styled.p`
@@ -171,4 +173,26 @@ export const TotalNumber = styled.p`
   font-size: 32px;
   line-height: 4px;
   color: ${tokens.color.darkText};
+`;
+
+export const ModalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  form {
+    .inputs-wrapper {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+  }
+  input {
+    height: 36px;
+    width: 40%;
+    margin-top: 0.8rem;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border-color: ${tokens.color.subtleText}
+  }
 `;

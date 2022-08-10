@@ -1,102 +1,70 @@
-import { GraphComponent } from "../GraphComponent";
+import { useState } from "react";
 import { Header } from "../Header";
 import { AddIcon } from "../Icons/AddIcon";
-import { GraphIcon } from "../Icons/GraphIcon";
-import { RevenueIcon } from "../Icons/RevenueIcon";
-import { OverViewComponent } from "../OverviewComponent";
+import { Inventory } from "../Inventory";
 import { Sidebar } from "../Sidebar";
+import { AddWineModal } from "./AddWineModal";
 import {
   AddWineButton,
   DashboardContentWrapper,
   DashboardWrapper,
-  DateRange,
-  Divider,
-  FilterText,
-  FlexWrapper,
-  GraphWrapper,
   OverviewHeader,
-  OverviewsWrapper,
   OverviewText,
-  PercentageText,
-  ProfitNumber,
-  ProfitWrapper,
-  RefreshText,
-  RevenueAmount,
-  SalesContentWrapper,
-  SalesOverViewText,
-  SalesOverViewWrapper,
   SalesSubHeading,
-  TotalNumber,
-  VerticalLine,
 } from "./Dashboard.style";
+import { Overviews } from "./Overviews";
+import { SalesOverview } from "./SalesOverview";
 
 export const Dashboard = () => {
+  const [inventory, setInventory] = useState<InventoryDataType[]>([]);
+  const [showModal, setShowModal] = useState<boolean>(false);
   return (
     <main>
       <Header />
       <DashboardWrapper>
         <Sidebar />
+        <AddWineModal
+          showModal={showModal}
+          setShowModal={setShowModal}
+          inventory={inventory}
+          setInventory={setInventory}
+        />
         <DashboardContentWrapper>
           <OverviewHeader>
             <OverviewText>Overview</OverviewText>
-            <AddWineButton>
+            <AddWineButton onClick={() => setShowModal(true)}>
               <AddIcon />
               Add New Wine
             </AddWineButton>
           </OverviewHeader>
-          <OverviewsWrapper>
-            <OverViewComponent orderType="open" orderCount={239} />
-            <OverViewComponent orderType="transit" orderCount={126} />
-            <OverViewComponent orderType="fulfilled" orderCount={239} />
-            <OverViewComponent orderType="cancelled" orderCount={239} />
-          </OverviewsWrapper>
+          <Overviews />
           <SalesSubHeading>Sales Details</SalesSubHeading>
-          <SalesOverViewWrapper>
-            <OverviewHeader>
-              <div>
-                <SalesOverViewText>Total Sales Overview</SalesOverViewText>
-                <DateRange>7 - 13 Aug,2020</DateRange>
-              </div>
-              <RefreshText>Refresh Metrics</RefreshText>
-            </OverviewHeader>
-            <Divider />
-            <SalesContentWrapper>
-              <GraphWrapper>
-                <OverviewHeader
-                >
-                  <div>
-                    <RevenueAmount>$74,729.00</RevenueAmount>
-                    <FlexWrapper style={{ marginBottom: "1.5rem" }}>
-                      <GraphIcon />
-                      <PercentageText>+21% from last week</PercentageText>
-                    </FlexWrapper>
-                  </div>
-
-                  <FlexWrapper>
-                    <RevenueIcon />
-                    <SalesOverViewText>
-                      Highest Revenue since 2 weeks ago
-                    </SalesOverViewText>
-                  </FlexWrapper>
-                </OverviewHeader>
-                <GraphComponent />
-              </GraphWrapper>
-              <VerticalLine/>
-              <ProfitWrapper>
-                <FilterText>Total Profit</FilterText>
-                <ProfitNumber>$12,545.00</ProfitNumber>
-                <FlexWrapper>
-                  <GraphIcon />
-                  <PercentageText>+21% from last week</PercentageText>
-                </FlexWrapper>
-                <div style={{marginTop: 30}}/>
-                <FilterText>Total Products Sold</FilterText>
-                <TotalNumber>329</TotalNumber>
-              </ProfitWrapper>
-            </SalesContentWrapper>
-          </SalesOverViewWrapper>
+          <SalesOverview />
+          <SalesSubHeading>Inventory</SalesSubHeading>
+          <Inventory inventory={inventory} />
         </DashboardContentWrapper>
       </DashboardWrapper>
     </main>
   );
 };
+
+export interface InventoryDataType {
+  id: string;
+  productName: string;
+  region: string;
+  rating: {
+    js: number | null;
+    rp: number | null;
+    ag: number | null;
+    ws: number | null;
+  };
+  vintage: number | null;
+  qty: number | null;
+  volume: string;
+  cost: number | null;
+  price: number | null;
+  stock: {
+    place: string;
+    units: number | null;
+  }[];
+}

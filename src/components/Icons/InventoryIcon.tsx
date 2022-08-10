@@ -12,23 +12,23 @@ export const InventoryIcon = ({ color }: IconProps) => {
       <path
         d="M12 3L3 7.5L12 12L21 7.5L12 3Z"
         stroke={color || "#485572"}
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M3 16.5L12 21L21 16.5"
         stroke={color || "#485572"}
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M3 12L12 16.5L21 12"
         stroke={color || "#485572"}
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

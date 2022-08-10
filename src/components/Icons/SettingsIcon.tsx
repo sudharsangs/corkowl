@@ -1,5 +1,4 @@
-import { IconProps } from "@chakra-ui/react";
-import React from "react";
+import { IconProps } from "./DashboardIcon";
 
 export const SettingsIcon = ({ color }: IconProps) => {
   return (
