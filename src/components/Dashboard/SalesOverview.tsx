@@ -1,5 +1,6 @@
 import { GraphComponent } from "../GraphComponent";
 import { GraphIcon } from "../Icons/GraphIcon";
+import { RefreshIcon } from "../Icons/RefreshIcon";
 import { RevenueIcon } from "../Icons/RevenueIcon";
 import {
   SalesOverViewWrapper,
@@ -28,7 +29,10 @@ export const SalesOverview = () => {
           <SalesOverViewText>Total Sales Overview</SalesOverViewText>
           <DateRange>7 - 13 Aug,2020</DateRange>
         </div>
-        <RefreshText>Refresh Metrics</RefreshText>
+        <FlexWrapper>
+          <RefreshIcon />
+          <RefreshText>Refresh Metrics</RefreshText>
+        </FlexWrapper>
       </OverviewHeader>
       <Divider />
       <SalesContentWrapper>

@@ -3,7 +3,7 @@ import { InventoryDataType } from "../Dashboard";
 import { Dropdown } from "../Icons/Dropdown";
 import {
   ExpandedDivider,
-  ExpandedView,
+  StockUnits,
   StyledTable,
   TableRating,
 } from "./Inventory.style";
@@ -23,6 +23,23 @@ export const Inventory = ({ inventory }: InventoryProps) => {
       setShowDetail("-1");
     } else {
       setShowDetail(String(ind));
+    }
+  };
+  const renderWineImage = (index: number) => {
+    if (index % 7 === 0) {
+      return wine7;
+    } else if (index % 6 === 0) {
+      return wine6;
+    } else if (index % 5 === 0) {
+      return wine5;
+    } else if (index % 4 === 0) {
+      return wine4;
+    } else if (index % 3 === 0) {
+      return wine3;
+    } else if (index % 2 === 0) {
+      return wine2;
+    } else if (index % 1 === 0) {
+      return wine1;
     }
   };
   return (
@@ -54,7 +71,7 @@ export const Inventory = ({ inventory }: InventoryProps) => {
               <td>
                 <FlexWrapper>
                   <img
-                    src={wine1}
+                    src={renderWineImage(index)}
                     style={{
                       marginRight: 12,
                     }}
@@ -81,13 +98,66 @@ export const Inventory = ({ inventory }: InventoryProps) => {
               </td>
             </tr>
             {showDetail === String(index) ? (
-                <ExpandedView>
-                  <div className="left" />
+              <tr>
+                <td colSpan={8}>
                   <div className="right">
                     <p className="dark-text">{res?.productName}</p>
+                    <FlexWrapper>
+                      <p className="dark-text">
+                        Region:<span className="thin-text">{res?.region}</span>
+                      </p>
+                      <div style={{ width: 12 }} />
+                      <p className="dark-text">
+                        Vintage:
+                        <span className="thin-text">{res?.vintage}</span>
+                      </p>
+                    </FlexWrapper>
                     <ExpandedDivider />
+
+                    <FlexWrapper
+                      style={{
+                        width: "100%",
+                        justifyContent: "space-between",
+                        alignItems: "flex-start",
+                      }}
+                    >
+                      <div style={{ width: "50%" }}>
+                        <p className="thin-text">RATING</p>
+                        <FlexWrapper style={{ flexWrap: "wrap" }}>
+                          <div style={{ padding: 12 }}>
+                            <p className="dark-text">James Suckling's </p>
+                            <TableRating>JS{res?.rating.js}</TableRating>
+                          </div>
+                          <div style={{ padding: 12 }}>
+                            <p className="dark-text">Robert Parker </p>
+                            <TableRating>RP{res?.rating.rp}</TableRating>
+                          </div>
+                          <div style={{ padding: 12 }}>
+                            <p className="dark-text">Antonio Galloni’s </p>
+                            <TableRating>AG{res?.rating.ag}</TableRating>
+                          </div>
+                          <div style={{ padding: 12 }}>
+                            <p className="dark-text">Wine Spectator Tasting </p>
+                            <TableRating>WS{res?.rating.ws}</TableRating>
+                          </div>
+                        </FlexWrapper>
+                      </div>
+                      <div style={{ width: "50%" }}>
+                        <p className="thin-text">STOCK</p>
+                        <FlexWrapper>
+                          {res?.stock?.map((res) => (
+                            <div style={{ padding: 12 }}>
+                              <p className="dark-text">{res?.place}</p>
+                              <StockUnits>{res?.units}</StockUnits>
+                            </div>
+                          ))}
+                        </FlexWrapper>
+                      </div>
+                      <div></div>
+                    </FlexWrapper>
                   </div>
-                </ExpandedView>
+                </td>
+              </tr>
             ) : null}
           </>
         ))}

@@ -71,19 +71,24 @@ export const TableRating = styled.div`
   justify-content: center;
 `;
 
-export const ExpandedView = styled.div`
+export const StockUnits = styled.div`
+  background: ${tokens.backgroundColor.peach};
+  border-radius: 4px;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 14px;
+  color: ${tokens.color.primary};
+  height: 30px;
+  width: 45px;
   display: flex;
-  .left {
-    width: 15%;
-  }
-  .right {
-    width: 85%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  align-items: center;
+  text-align: center;
+  justify-content: center;
 `;
 
+
 export const ExpandedDivider = styled.hr`
-  border-top: "1px solid #E7E7E7";
+  border-top: 1px solid #E7E7E7;
 `;

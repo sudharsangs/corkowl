@@ -37,7 +37,12 @@ export const AddWineModal = ({
     volume: "",
     cost: null,
     price: null,
-    stock: [],
+    stock: [
+      {
+        place: "",
+        units: null,
+      },
+    ],
   });
 
   const closeModal = () => {
@@ -52,6 +57,36 @@ export const AddWineModal = ({
     arr.push(formValues);
     setInventory(arr);
     setShowModal(false);
+  };
+
+  const handleStockPlaceChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    const arr = [...formValues.stock];
+    arr[index].place = e.target.value;
+    setFormValues({ ...formValues, stock: arr });
+  };
+
+  const handleStockUnitChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    const arr = [...formValues.stock];
+    arr[index].units = Number(e.target.value);
+    setFormValues({ ...formValues, stock: arr });
+  };
+
+  const addStockValue = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    const arr = [...formValues.stock];
+    arr.push({
+      place: "",
+      units: null,
+    });
+    setFormValues({ ...formValues, stock: arr });
   };
 
   return (
@@ -180,6 +215,22 @@ export const AddWineModal = ({
                   setFormValues({ ...formValues, cost: Number(e.target.value) })
                 }
               />
+              {formValues?.stock?.map((res, ind) => (
+                <div>
+                  <input
+                    placeholder="Stock Place"
+                    value={res?.place}
+                    onChange={(e) => handleStockPlaceChange(e, ind)}
+                  />
+                  <input
+                    placeholder="Stock Units"
+                    type="number"
+                    value={res?.units as number}
+                    onChange={(e) => handleStockUnitChange(e, ind)}
+                  />
+                  <button onClick={addStockValue}>+</button>
+                </div>
+              ))}
             </div>
             <AddWineButton onClick={handleFormSubmission}>
               Add Wine
